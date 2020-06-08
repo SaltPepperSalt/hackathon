@@ -1,0 +1,22 @@
+.modal_viewport {
+  width: 200px;
+  height: 200px;
+  border: 10px solid red;;
+}
+
+.modal_list {
+  width: 600px;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+}
+
+
+.modal_view {
+  float: left;
+  width: 200px;
+  height: 200px;
+  border: 10px solid black;
+  box-sizing: border-box;
+}

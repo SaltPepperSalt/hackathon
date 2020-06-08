@@ -1,3 +1,5 @@
+//state 
+
 const recipes = [{
   id: 1,
   name: 'Boiled egg',
@@ -47,3 +49,10 @@ const recipes = [{
   content: '삶은 달걀',
   imgSrc: "./images/pancake.jpg"
 }];
+
+
+// DOM
+const $recipeList = document.querySelector('.recipe_list');
+
+
+
