@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sunny Side Up</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/app.js" defer></script>
 </head>
 <body>
   <header>
-    <h1 class="logo">Sunny Side Up</h1>
+    <h1 class="logo">logo</h1>
     <div class="time_container">
       <div class="time"></div>
       <p class="msg">
@@ -15,12 +17,22 @@
   </header>
 
   <main>
-    <div class = "lorem">
+    <div class = "quote">
       Tomatoes and oregano make it Italian; wine and tarragon make it French.
       Sour cream makes it Russian; lemon and cinnamon make it Greek.
       Soy sauce makes it Chinese; garlic makes it good.
     </div>
-    <ul class = "recipe_list">          
+    <div class="search_box">
+      <button class="sort_name_btn">이름순 정렬</button>
+      <button class="sort_date_btn">업데이트순 정렬</button>
+      <button class="reset_sort_btn">초기창</button>
+      <input type="text" class = "recipe_search" placeholder="레시피검색">
+    </div>
+    <ul class = "recipe_list">
+      <!-- <li id="id" class = "recipe">
+        <figure><img class = "recipe_img" src="" alt=""></figure>
+        <figcaption></figcaption>
+      </li>       -->
     </ul>
     <button class = "up_btn">up</button>
   </main>
@@ -28,49 +40,9 @@
   <div class="modal_wrapper">
     <div class="modal_viewport">
       <ul class="modal_list">
-        <li class="modal_view">
-          <div class="modal">
-            <div class="index">
-              <span>ㅁ</span>
-              <span>ㅇ</span>
-              <span>ㅇ</span>
-            </div>
-            <p class="modal_title"></p>
-            <div class="ingredient">
-              <input type="number" class="serving">
-            </div>
-          </div>
-        </li>
-        <li class="modal_view">
-          <div class="modal">
-            <div class="index">
-              <span>ㅇ</span>
-              <span>ㅁ</span>
-              <span>ㅇ</span>
-            </div>
-            <div class="content">
-              <img src="" alt="" class="content_img">
-              <article class="content_text"></article>
-            </div>
-            <div class="timer_wrapper">
-              <div class="timer"></div>
-              <button></button>
-            </div>
-          </div>
-        </li>
-        <li class="modal_view">
-          <div class="modal">
-            <div class="index">
-              <span>ㅇ</span>
-              <span>ㅇ</span>
-              <span>ㅁ</span>
-            </div>
-            END
-          </div>
-        </li>
       </ul>
     </div>
-    <button class="reset_btn"></button>
+    <button class="reset_btn"><img src="../images/icon/icon_undo.png" alt=""></button>
     <button class="pre_btn"><img src="../images/icon/icon_arrow.png" alt=""></button>
     <button class="next_btn"><img src="../images/icon/icon_arrow.png" alt=""></button>
     <button class="close_btn"><img src="../images/icon/icon_x.png" alt=""></button>
