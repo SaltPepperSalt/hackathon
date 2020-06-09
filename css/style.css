@@ -24,6 +24,10 @@ figure {
   margin: 0;
 }
 
+figcaption {
+ line-height: 35px;
+}
+
 /* header */
 
 header {
@@ -60,11 +64,12 @@ header {
   display: flex;
   justify-content: space-between;
   top: 0;
-  padding: 5px 100px;
+  padding: 8px 65px;
+  text-shadow: 2px 2px black;
 }
 .time_container {
   font-size: 20px;
-  text-shadow: 1px 1px black;
+  text-shadow: 2px 2px black;
   margin: 21px;
 }
 
@@ -81,27 +86,41 @@ justify-content: center;
 align-items: center;
 text-align: center;
 font-style: italic;
+
 }
 
 /* 정렬 초기화 버튼 */
 .search_box {
   box-sizing: border-box;
-  width: 100%;
+  width: calc(100% - 60px);
   text-align: right;
-  padding: 0 30px;
+  padding: 10px 0px;
+  margin: 0 auto 15px;
+  border-bottom: 1px solid #cccccc;
+  
 }
 .search_box > button {
   background-color: #fff;
   border-width: 0ch;
   border-bottom: 2px;
-  font-size: 20px;
+  font-size: 18px;
+  color: #999;
+}
+
+
+.reset_sort_btn {
+  display: none;
 }
 
 /* 검색창 */
 .recipe_search {
-  width: 200px;
+  box-sizing: border-box;
+  width: 220px;
   height: 30px;
-  font-size: 20px;
+  border: 3px solid #cccccc;
+  margin-left: 15px;
+  font-size: 18px;
+  padding-left: 10px;
 }
 
 /* 레시피 ul요소 */
@@ -189,8 +208,9 @@ border-radius: 20px;
 }
 .index {
   margin-top: 40px;
-  font-size: 20px;
-  color: #999;
+
+  font-size: 18px;
+  color: indianred;
 }
 .modal_title {
   text-align: center;
@@ -204,18 +224,19 @@ border-radius: 20px;
 }
 .ingredient {
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 18px;
 
   display: inline-block;
 }
 .serving {
-  margin-left: 20px;
+  margin-left: 10px;
   width: 40px;
   height: 30px;
-  font-size: 30px;
+  font-size: 18px;
+  line-height: 2px;
 }
 .content_img {
-  margin-top: 100px;
+  margin-top: 75px;
   width: 25%;
   height: auto;
 }
@@ -223,48 +244,60 @@ border-radius: 20px;
   margin-top: 20px;
   font-size: 20px;
 }
+
+.timer_wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .timer {
-  margin-top: 10px;
-  font-size: 50px;
+  margin-top: 0px;
+  font-size: 45px;
+  line-height: 55px;
 }
 .pre_btn {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   transform: rotate(180deg);
   left: 12%;
 }
 
-.reset_btn {
-  width: 60px;
-  height: 60px;
-  right: 16%;
-  top: calc(12% + 60px);
-}
-
 .next_btn {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   right: 12%;
 }
 
+.reset_btn {
+  width: 52px;
+  height: 52px;
+  right: 15%;
+  top: calc(12% + 60px);
+}
+
+
 .close_btn {
   top: 10%;
-  right: 16%;
-  width: 60px;
-  height: 60px;
+  right: 15%;
+  width: 50px;
+  height: 50px;
+  
 }
 
 .timer_start {
-  width: 80px;
-  height: 80px;
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
   border: none;
   background-color: transparent;
   background-image: url("../images/icon/icon_play.png");
   background-size: contain;
 }
 .timer_stop {
-  width: 80px;
-  height: 80px;
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
   border: none;
   background-color: transparent;
   background-image: url("../images/icon/icon_pause_211791.png");
@@ -281,11 +314,21 @@ border-radius: 20px;
 }
 
 .end {
+  height: 300px;
   display: block;
   font-size: 50px;
   margin-top: 50px;
+  background-image: url(/images/icon/pngfind.com-food-icon-png-58345.png);
+  background-size: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-
+.ending_msg {
+  font-size: 30px;
+}
 footer {
-  margin-top: 100px;
+  margin-top: 150px;
+  width: 100%;
+  height: 130px;
+  background-color: #cccccc;
 }

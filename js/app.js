@@ -46,7 +46,7 @@ const $msg = document.querySelector('.msg');
   hour = hour < 10 ? '0' + hour : hour;
   minute = minute < 10 ? '0' + minute : minute;  
   second = second < 10 ? '0' + second : second;
-  $time.innerHTML = `${month}월 ${day}일 ${hour}:${minute}:${second}${ampm}`;
+  $time.innerHTML = `${month}월 ${day}일 ${hour}:${minute}:${second} ${ampm}`;
   setTimeout(timeBox,1000);
 }());
 
@@ -97,7 +97,7 @@ window.onload = () => {
     name: 'Boiled egg',
     ingredients: ['egg', 'water', 'salt'],
     ingredientsAmounts: [2, 600, 10],
-    ingredientsUnits: ['개', 'ml', 'g'],
+    ingredientsUnits: ['ea', 'ml', 'g'],
     time: 570,
     cookImg: '/images/icon/icon_pot2.png',
     content: '물에 넣고 삶아주세요',
@@ -117,7 +117,7 @@ window.onload = () => {
     name: 'Beef',
     ingredients: ['beef', 'rice', 'egg', 'oil'],
     ingredientsAmounts: [300, 200, 1, 20],
-    ingredientsUnits: ['g', 'g', '개', 'ml'],
+    ingredientsUnits: ['g', 'g', 'ea', 'ml'],
     time: 180,
     cookImg: '/images/icon/icon_pot1.png',
     content: '기름을 두르고 구워주세요',
@@ -137,7 +137,7 @@ window.onload = () => {
     name: 'Lasagna',
     ingredients: ['rice', 'water', 'salt'],
     ingredientsAmounts: [2, 600, 10],
-    ingredientsUnits: ['개', 'ml', 'g'],
+    ingredientsUnits: ['ea', 'ml', 'g'],
     time: 10,
     cookImg: '/images/icon/icon_pot.png',
     content: '라자냐 어케 만들더라',
@@ -147,10 +147,10 @@ window.onload = () => {
     name: 'Pancake',
     ingredients: ['egg', 'water', 'salt'],
     ingredientsAmounts: [2, 600, 10],
-    ingredientsUnits: ['개', 'ml', 'g'],
+    ingredientsUnits: ['ea', 'ml', 'g'],
     time: 10,
     cookImg: '/images/icon/icon_pot.png',
-    content: '파리바게트 가서 사세요',
+    content: '돈 주고 사먹으세요',
     imgSrc: '/images/pancake.jpg'
   }];
   recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
@@ -355,7 +355,8 @@ const renderModal = recipe => {
         <span>○</span>
         <span>●</span>
       </div>
-      <span class="end">END</span>
+      <span class="end"></span>
+      <p class="ending_msg">bon appetit!</p>
     </div>
   </li>`
   $modalList.innerHTML = html;
@@ -373,7 +374,7 @@ const renderModal = recipe => {
 // Ingredient change
 const servingAmount = (serving = 1) => {
   let html = '';
-  targetRecipe.ingredients.forEach((ingredient, index) => html += `${ingredient}: ${+targetRecipe.ingredientsAmounts[index] * +serving}${targetRecipe.ingredientsUnits[index]} `);
+  targetRecipe.ingredients.forEach((ingredient, index) => html += ` ${ingredient} : ${+targetRecipe.ingredientsAmounts[index] * +serving}${targetRecipe.ingredientsUnits[index]} \b`);
   return html;
 }; 
 
