@@ -72,7 +72,7 @@ const sliderFunc = (function () {
   return {
     nextPage() {
       if (curPage === 2) return;
-      $modalList.style.transform = `translate3d(-${200 * (curPage + 1)}px , 0px, 0px)`;
+      $modalList.style.transform = `translate3d(-${100 / 3 * (curPage + 1)}% , 0px, 0px)`;
       $modalList.style.transition = '0.3s';
       curPage++;
       if (curPage === 2) { 
@@ -84,7 +84,7 @@ const sliderFunc = (function () {
     prevPage() {
       $resetBtn.style.display = 'none';
       if (curPage === 0) return;
-      $modalList.style.transform = `translate3d(-${200 * (curPage -1)}px , 0px, 0px)`;
+      $modalList.style.transform = `translate3d(-${100 / 3 * (curPage -1)}% , 0px, 0px)`;
       $modalList.style.transition = '0.3s';
       curPage--;
       if (curPage === 0) $preBtn.style.display = 'none';
