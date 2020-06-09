@@ -81,7 +81,7 @@ text-align: center;
   border-bottom: 2px;
 }
 .reset_sort_btn {
-  display: none;
+  /* display: none; */
 }
 /* 검색창 */
 .recipe_search {
