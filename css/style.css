@@ -107,9 +107,11 @@ font-style: italic;
   color: #999;
 }
 
+
 .reset_sort_btn {
   display: none;
 }
+
 /* 검색창 */
 .recipe_search {
   box-sizing: border-box;
@@ -136,10 +138,16 @@ font-style: italic;
   max-width: 600px;
   text-align: center;
   margin: 15px 30px;
-}   
+} 
+.search_recipe {
+  margin: 15px auto;
+}  
 
 .recipe_img {
   width: 100%;
+}
+.reset_sort_btn {
+  display: none;
 }
 
 /* 상단이동버튼 */
@@ -293,6 +301,15 @@ border-radius: 20px;
   border: none;
   background-color: transparent;
   background-image: url("../images/icon/icon_pause_211791.png");
+  background-size: contain;
+}
+.timer_reset {
+  display: none;
+  width: 80px;
+  height: 80px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/icon/icon_undo3.png");
   background-size: contain;
 }
 
