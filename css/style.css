@@ -20,6 +20,10 @@ ul {
   padding-left: 0;
 }
 
+figure {
+  margin: 0;
+}
+
 /* header */
 
 header {
@@ -28,7 +32,7 @@ header {
 }
 
 .visual  {
-  height: 400px;
+  height: 600px;
   width: 100%;
   overflow: hidden;
 
@@ -51,40 +55,55 @@ header {
 }
 .header_top {
   width: 100%;
+  box-sizing: border-box;
   position: absolute;
   display: flex;
   justify-content: space-between;
   top: 0;
+  padding: 5px 100px;
+}
+.time_container {
+  font-size: 20px;
+  text-shadow: 1px 1px black;
+  margin: 21px;
 }
 
-
 /* main */
-
+main {
+  padding: 0 6%;
+}
 /* 인용구 */
 .quote {
 font-size: 30px;
-min-height: 300px;
+min-height: 450px;
 display: flex;
 justify-content: center;
 align-items: center;
 text-align: center;
+font-style: italic;
 }
 
 /* 정렬 초기화 버튼 */
 .search_box {
+  box-sizing: border-box;
   width: 100%;
   text-align: right;
+  padding: 0 30px;
 }
 .search_box > button {
   background-color: #fff;
   border-width: 0ch;
   border-bottom: 2px;
+  font-size: 20px;
 }
 .reset_sort_btn {
   display: none;
 }
 /* 검색창 */
 .recipe_search {
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
 }
 
 /* 레시피 ul요소 */
@@ -98,10 +117,10 @@ text-align: center;
 .recipe {
   /* height: 500px; */
   flex-grow: 1;
-  width: 30%;
+  width: 28%;
   max-width: 600px;
   text-align: center;
-  margin: 15px auto;
+  margin: 15px 30px;
 }   
 
 .recipe_img {
@@ -252,4 +271,8 @@ border-radius: 20px;
   display: block;
   font-size: 50px;
   margin-top: 50px;
+}
+
+footer {
+  margin-top: 100px;
 }

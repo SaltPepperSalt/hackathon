@@ -283,7 +283,7 @@ const timer = (function () {
         time--;
         $timer.textContent = `${Math.floor(time / 60) + ':' + (time % 60 < 10 ? '0' + time % 60 : time % 60)}`;
         if (time === 0) {
-          alert('Done!');
+          $timer.textContent = 'Done!'
           clearInterval(stopCode);
         }
       }, 1000);
@@ -365,6 +365,7 @@ $resetBtn.onclick = sliderFunc.resetPage;
 $closeBtn.onclick = () => {
   $modalWrapper.style.display = 'none';
   sliderFunc.resetPage();
+  timer.stopTimer();
 };
 
 $modalList.onclick = e => {
