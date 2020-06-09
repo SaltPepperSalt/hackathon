@@ -22,7 +22,40 @@ ul {
 
 /* header */
 
+header {
+  position: relative;
+  color:#ffffff;
+}
 
+.visual  {
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+
+}
+.slide_box {  
+  width: calc(100%*5);
+  height: 100%;
+}
+
+.slide_item {
+  padding-inline-start: 0px;
+  padding: 0px; 
+  float: left;
+  max-width: 20%;
+  height: 100%;
+
+}
+.slide_item > img  {
+  width: 100%;    
+}
+.header_top {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+}
 
 
 /* main */

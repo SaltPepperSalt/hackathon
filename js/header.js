@@ -1,7 +1,6 @@
 const $slideBox = document.querySelector('.slide_box');
 const firstImg = $slideBox.firstElementChild.cloneNode(true);
 let visualIndex = 0 ;
-let delay = 1000;
 $slideBox.appendChild(firstImg); 
 
 function slide() { 
