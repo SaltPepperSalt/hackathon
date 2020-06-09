@@ -1,5 +1,27 @@
+const $slideBox = document.querySelector('.slide_box');
+const firstImg = $slideBox.firstElementChild.cloneNode(true);
+let visualIndex = 0 ;
+let delay = 1000;
+$slideBox.appendChild(firstImg); 
+
+function slide() { 
+  if (visualIndex === 4){
+    visualIndex = 0;
+    $slideBox.style.transform = `translateX(-0%)`;
+    $slideBox.style.transition = '0s';
+    setTimeout(slide, 0);
+  } else {
+    $slideBox.style.transform = `translateX(-${20 * (visualIndex+1)}%)`;
+    $slideBox.style.transition = '2s';
+    visualIndex++;
+    setTimeout(slide, 3000);
+  }
+}
+slide();
+
 const $time = document.querySelector('.time');
 const $msg = document.querySelector('.msg');    
+
 (function timeBox() {
 
 
@@ -27,3 +49,4 @@ const $msg = document.querySelector('.msg');
   $time.innerHTML = `${month}월 ${day}일 ${hour}:${minute}:${second}${ampm}`;
   setTimeout(timeBox,1000);
 }());
+
