@@ -374,7 +374,7 @@ const renderModal = recipe => {
 // Ingredient change
 const servingAmount = (serving = 1) => {
   let html = '';
-  targetRecipe.ingredients.forEach((ingredient, index) => html += ` ${ingredient} : ${+targetRecipe.ingredientsAmounts[index] * +serving}${targetRecipe.ingredientsUnits[index]} \b`);
+  targetRecipe.ingredients.forEach((ingredient, index) => html += ` ${ingredient} : ${+targetRecipe.ingredientsAmounts[index] * +serving}${targetRecipe.ingredientsUnits[index]} &nbsp`);
   return html;
 }; 
 
