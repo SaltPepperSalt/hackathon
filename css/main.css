@@ -1,6 +1,4 @@
-p {
-    margin: 0;
-  }
+
 .lorem {
   font-size: 30px;
   min-height: 300px;
@@ -9,6 +7,8 @@ p {
   align-items: center;
   text-align: center;
 }
+
+
 .reset_btn {
 }
 .recipe_search {
@@ -17,9 +17,7 @@ p {
 /* 레시피 ul요소 */
 .recipe_list {
     display: flex;
-    flex-wrap: wrap;
-    padding-left: 0;
-    list-style-type: none;
+    flex-flow: row wrap;
     justify-content: space-between;
 }
 /* 레시피 li요소 */
