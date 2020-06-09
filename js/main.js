@@ -3,6 +3,10 @@ const $recipeSearch = document.querySelector('.recipe_search')
 const $recipes = document.querySelector('.recipe_list');
 const $upBtn = document.querySelector('.up_btn');
 const $resetBtn = document.querySelector('.reset_btn')
+const $searchBox = document.querySelector('.search_box')
+const $sortNameBtn = document.querySelector('.sort_name_btn');
+const $sortDateBtn = document.querySelector('.sort_date_btn');
+
 let recipes = [];
 let searchRecipe = [];
 let searchList = [];
@@ -74,17 +78,19 @@ window.onload = () => {
   render();
 };
 
-// 검색 자동완성
-// new AutoComplete(document.querySelector('.recipeSearch'), recipes.map(recipe => recipes.name));
 
 // 레시피 검색
 const recipeSearchRender = recipeName => {
   searchRecipe = recipes.filter(recipe => recipe.name.toLowerCase() === recipeName.toLowerCase())[0];
-  if (!searchRecipe) $recipes.textContent = '검색결과가 없습니다.';
-  $recipes.innerHTML = `<li id ="${searchRecipe.id}" class="recipe" tabindex="0"> 
-  <figure><img class ="recipe_img" src="${searchRecipe.imgSrc}" alt="레시피이미지"></figure>
-  <figcaption>${searchRecipe.name}</figcaption>
+
+  if (!searchRecipe) $recipeSearch.placeholder = '검색결과가 없습니다.';
+
+  $recipes.innerHTML = `
+  <li id ="${searchRecipe.id}" class="recipe" tabindex="0"> 
+    <figure><img class ="recipe_img" src="${searchRecipe.imgSrc}" alt="레시피이미지"></figure>
+    <figcaption>${searchRecipe.name}</figcaption>
   </li>`;
+  $recipeSearch.placeholder = '레시피 검색';
 }
 $recipeSearch.onkeyup = e => {
   let recipeName = '';
@@ -99,6 +105,21 @@ $resetBtn.onclick = () => {
 }
 
 
+// 이름순 레시피 정렬
+$sortNameBtn.onclick = () => {
+  function compare(key) {
+    return (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
+  }
+  console.log(recipes.sort(compare('name')));
+  recipes = recipes.sort(compare('name'));
+  render();
+};
+// 업데이트순 레시피 정렬
+$sortDateBtn.onclick = () => {
+  recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
+  render();
+}
+
 // 레시피 호버시 이벤트
 $recipes.onmouseover = ({ target }) => {
   if (!target.matches('.recipe_list > li > figure > img')) return;
@@ -110,7 +131,7 @@ $recipes.onmouseout = ({ target }) => {
 };
 
 
-// 페이지 최상단으로 이동
+// 페이지 최상단으로 이동 버튼
 $upBtn.onclick = () => {
   window.scroll({
     top: 0,
