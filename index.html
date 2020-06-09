@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunny Side Up</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class = "visual">
+      <ul class = "slide_box">
+        <li class="slide_item"><img src="./images/main01.jpg" alt=""></li>
+        <li class="slide_item"><img src="./images/main02.jpg" alt=""></li>
+        <li class="slide_item"><img src="./images/main03.jpg" alt=""></li>
+        <li class="slide_item"><img src="./images/main04.jpg" alt=""></li>
+      </ul>
+    </div>
+    
+    <div class="header_top">
+      <h1 class="logo">Sunny Side Up &#x1F31E;</h1>
+      <div class="time_container">
+        <div class="time"></div>
+        <p class="msg">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class = "quote">
+      Tomatoes and oregano make it Italian; wine and tarragon make it French.
+      Sour cream makes it Russian; lemon and cinnamon make it Greek.
+      Soy sauce makes it Chinese; garlic makes it good.
+    </div>
+    <div class="search_box">
+      <button class="sort_name_btn">이름순 정렬</button>
+      <button class="sort_date_btn">업데이트순 정렬</button>
+      <input type="text" class = "recipe_search" placeholder="레시피를 검색하세요      &#x1F50D;">
+    </div>
+    <ul class = "recipe_list">
+      <!-- <li id="id" class = "recipe">
+        <figure><img class = "recipe_img" src="" alt=""></figure>
+        <figcaption></figcaption>
+      </li>       -->
+    </ul>
+    <button class="reset_sort_btn">초기화면으로</button>
+    <button class = "up_btn">up</button>
+  </main>
+
+  <div class="modal_wrapper">
+    <div class="modal_viewport">
+      <ul class="modal_list">
+      </ul>
+    </div>
+    <button class="reset_btn"><img src="../images/icon/icon_undo.png" alt=""></button>
+    <button class="pre_btn"><img src="../images/icon/icon_arrow.png" alt=""></button>
+    <button class="next_btn"><img src="../images/icon/icon_arrow.png" alt=""></button>
+    <button class="close_btn"><img src="../images/icon/icon_x.png" alt=""></button>
+  </div>
+  <footer>
+
+  </footer>
+</body>
+</html>
