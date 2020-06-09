@@ -96,9 +96,7 @@ font-style: italic;
   border-bottom: 2px;
   font-size: 20px;
 }
-.reset_sort_btn {
-  display: none;
-}
+
 /* 검색창 */
 .recipe_search {
   width: 200px;
@@ -121,10 +119,16 @@ font-style: italic;
   max-width: 600px;
   text-align: center;
   margin: 15px 30px;
-}   
+} 
+.search_recipe {
+  margin: 15px auto;
+}  
 
 .recipe_img {
   width: 100%;
+}
+.reset_sort_btn {
+  display: none;
 }
 
 /* 상단이동버튼 */
