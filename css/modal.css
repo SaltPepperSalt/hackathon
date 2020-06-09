@@ -1,3 +1,37 @@
+@font-face {
+  font-family: SCDream;
+  src: url(../font/SCDream4.otf);
+}
+body {
+  margin: 0;
+  font-family: SCDream;
+}
+p {
+  margin: 0;
+}
+/* 레시피 ul요소 */
+.recipe_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+/* 레시피 li요소 */
+.recipe {
+  list-style: none;
+  background-color: blue;
+  height: 500px;
+  width: 33%;
+}   
+.recipe_img {
+  width: 100%;
+}
+.up_btn {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+
+/* modal */
 body {
   margin: 0;
 }
@@ -44,6 +78,50 @@ body {
 .modal_wrapper [class$="_btn"] img {
   width: 100%;
 }
+.modal {
+  height: 100%;
+  text-align: center;
+}
+.index {
+  margin-top: 40px;
+  font-size: 20px;
+  color: #999;
+}
+.modal_title {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 20px;
+}
+.modal_img {
+  margin-top: 50px;
+  width: 40%;
+  height: auto;
+}
+.ingredient {
+  margin-top: 20px;
+  font-size: 20px;
+
+  display: inline-block;
+}
+.serving {
+  margin-left: 20px;
+  width: 40px;
+  height: 30px;
+  font-size: 30px;
+}
+.content_img {
+  margin-top: 100px;
+  width: 25%;
+  height: auto;
+}
+.content_text {
+  margin-top: 20px;
+  font-size: 20px;
+}
+.timer {
+  margin-top: 10px;
+  font-size: 50px;
+}
 .pre_btn {
   width: 80px;
   height: 80px;
@@ -72,18 +150,24 @@ body {
 }
 
 .timer_start {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: none;
   background-color: transparent;
   background-image: url("../images/icon/icon_play.png");
   background-size: contain;
 }
 .timer_stop {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: none;
   background-color: transparent;
   background-image: url("../images/icon/icon_pause_211791.png");
   background-size: contain;
+}
+
+.end {
+  display: block;
+  font-size: 50px;
+  margin-top: 50px;
 }
