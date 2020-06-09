@@ -4,7 +4,7 @@ let visualIndex = 0 ;
 $slideBox.appendChild(firstImg); 
 
 function slide() { 
-  if (visualIndex === 4){
+  if (visualIndex === 4) {
     visualIndex = 0;
     $slideBox.style.transform = `translateX(-0%)`;
     $slideBox.style.transition = '0s';
@@ -19,7 +19,7 @@ function slide() {
 slide();
 
 const $time = document.querySelector('.time');
-const $msg = document.querySelector('.msg');    
+const $msg = document.querySelector('.msg');
 
 (function timeBox() {
 
@@ -73,13 +73,14 @@ const $closeBtn = document.querySelector('.close_btn');
 const $nextBtn = document.querySelector('.next_btn');
 const $modalList = document.querySelector('.modal_list');
 const $modalWrapper = document.querySelector('.modal_wrapper');
+const $resetSortbtn = document.querySelector('.reset_sort_btn');
 
 // 랜더
 const render = () => {
   let html = '';
   recipes.forEach(recipe => {
     html += `
-      <li id ="${recipe.id}" class="recipe"> 
+      <li id ="${recipe.id}" class="recipe" tabindex="0"> 
         <figure><img class ="recipe_img" src="${recipe.imgSrc}" alt="${recipe.name} 이미지"></figure>
         <figcaption>${recipe.name}</figcaption>
       </li>`;
@@ -158,32 +159,32 @@ window.onload = () => {
 const recipeSearchRender = recipeName => {
   let searchRecipe = recipes.filter(recipe => recipe.name.toLowerCase() === recipeName.toLowerCase())[0]; 
 // 정규 표현식
-
+  console.log(searchRecipe);
   if (!searchRecipe) $recipeSearch.placeholder = '검색결과가 없습니다.';
 // alert 
 
-  $recipeList.innerHTML = `
-  <li id ="${searchRecipe.id}" class="recipe" tabindex="0"> 
+  if (searchRecipe) {$recipeList.innerHTML = `
+  <li id ="${searchRecipe.id}" class="recipe search_recipe"> 
     <figure><img class ="recipe_img" src="${searchRecipe.imgSrc}" alt="${searchRecipe.name} 이미지"></figure>
     <figcaption>${searchRecipe.name}</figcaption>
-    <button class="reset_sort_btn">초기화면으로</button>
   </li>
   `;
   $recipeSearch.placeholder = '레시피 검색';
+  $resetSortbtn.style.display = 'block';
+  }
 };
 $recipeSearch.onkeyup = e => {
-  console.log('123')
   if (e.keyCode !== 13) return;
-  console.log('345')
   // 방어코드 비어있을 때
   recipeSearchRender($recipeSearch.value);
   $recipeSearch.value = '';
   console.log('375')
 }
 
-// $resetSortbtn.onclick = () => {
-//   render();
-// }
+$resetSortbtn.onclick = () => {
+  $resetSortbtn.style.display = 'none';
+  render();
+}
 
 const compare = key => {
   return (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
@@ -273,7 +274,7 @@ const sliderFunc = (function () {
       curPage = 0;
     }
   }
-})();
+}());
 
 // Timer Function
 const timer = (function () {
@@ -304,7 +305,7 @@ const timer = (function () {
       $timer.textContent = `${Math.floor(time / 60) + ':' + (time % 60 < 10 ? '0' + time % 60 : time % 60)}`;
     }
   }
-})();
+}());
 
 // Modal render
 const renderModal = recipe => {

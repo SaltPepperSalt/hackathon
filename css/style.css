@@ -119,14 +119,17 @@ font-style: italic;
   max-width: 600px;
   text-align: center;
   margin: 15px 30px;
-}   
+} 
+.search_recipe {
+  margin: 15px auto;
+}  
 
 .recipe_img {
   width: 100%;
 }
-/* .reset_sort_btn {
-  position: absolute;
-} */
+.reset_sort_btn {
+  display: none;
+}
 
 /* 상단이동버튼 */
 .up_btn {
