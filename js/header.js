@@ -1,7 +1,7 @@
-    
+const $time = document.querySelector('.time');
+const $msg = document.querySelector('.msg');    
 (function timeBox() {
-  const $time = document.querySelector('.time');
-  const $msg = document.querySelector('.msg');
+
 
   const clock = new Date();
   let month = clock.getMonth();
