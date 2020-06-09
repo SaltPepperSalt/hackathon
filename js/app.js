@@ -57,13 +57,12 @@ const $msg = document.querySelector('.msg');
 let recipes = [];
 let targetRecipe = {};
 let $ingredient = '';
-let searchState = 'start';
 
 //DOM
 
 const $recipeSearch = document.querySelector('.recipe_search');
 const $upBtn = document.querySelector('.up_btn');
-const $resetSortbtn = document.querySelector('.reset_sort_btn')
+// const $resetSortbtn = document.querySelector('.reset_sort_btn')
 const $searchBox = document.querySelector('.search_box')
 const $sortNameBtn = document.querySelector('.sort_name_btn');
 const $sortDateBtn = document.querySelector('.sort_date_btn');
@@ -78,8 +77,7 @@ const $modalWrapper = document.querySelector('.modal_wrapper');
 // 랜더
 const render = () => {
   let html = '';
-  let _recipes = searchState === 'name' ? recipes.sort(compare('name')) : searchState === 'id' ? recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id) : recipes;
-  _recipes.forEach(recipe => {
+  recipes.forEach(recipe => {
     html += `
       <li id ="${recipe.id}" class="recipe"> 
         <figure><img class ="recipe_img" src="${recipe.imgSrc}" alt="${recipe.name} 이미지"></figure>
@@ -168,7 +166,9 @@ const recipeSearchRender = recipeName => {
   <li id ="${searchRecipe.id}" class="recipe" tabindex="0"> 
     <figure><img class ="recipe_img" src="${searchRecipe.imgSrc}" alt="${searchRecipe.name} 이미지"></figure>
     <figcaption>${searchRecipe.name}</figcaption>
-  </li>`;
+    <button class="reset_sort_btn">초기화면으로</button>
+  </li>
+  `;
   $recipeSearch.placeholder = '레시피 검색';
 };
 $recipeSearch.onkeyup = e => {
@@ -181,10 +181,9 @@ $recipeSearch.onkeyup = e => {
   console.log('375')
 }
 
-$resetSortbtn.onclick = () => {
-  searchState = 'start';
-  render();
-}
+// $resetSortbtn.onclick = () => {
+//   render();
+// }
 
 const compare = key => {
   return (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
@@ -192,13 +191,13 @@ const compare = key => {
 
 // 이름순 레시피 정렬
 $sortNameBtn.onclick = () => {
-  searchState = 'name';
+  recipes = recipes.sort(compare('name'));
   render();
 };
 
 // 업데이트순 레시피 정렬
 $sortDateBtn.onclick = () => {
-  searchState = 'id';
+  recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
   render();
 }
 
