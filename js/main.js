@@ -1,58 +1,14 @@
-const recipes = [{
-  id: 1,
-  name: 'Boiled egg',
-  ingredients: ['egg', 'water', 'salt'],
-  ingredientsAmounts: [2, 600, 10],
-  ingredientsUnits: ['개', 'ml', 'g'],
-  content: '삶은 달걀',
-  imgSrc: '/images/boiledegg.jpg'
-}, {
-  id: 2,
-  name: 'Steak',
-  ingredients: ['egg', 'water', 'salt'],
-  ingredientsAmounts: [2, 600, 10],
-  ingredientsUnits: ['개', 'ml', 'g'],
-  content: '삶은 달걀',
-  imgSrc: '/images/steak.jpg'
-}, {
-  id: 3,
-  name: 'Beef',
-  ingredients: ['egg', 'water', 'salt'],
-  ingredientsAmounts: [2, 600, 10],
-  ingredientsUnits: ['개', 'ml', 'g'],
-  content: '삶은 달걀',
-  imgSrc: '/images/beef.jpg'
-}, {
-  id: 4,
-  name: 'Spaghetti',
-  ingredients: ['egg', 'water', 'salt'],
-  ingredientsAmounts: [2, 600, 10],
-  ingredientsUnits: ['개', 'ml', 'g'],
-  content: '삶은 달걀',
-  imgSrc: '/images/spa.jpg'
-}, {
-  id: 5,
-  name: 'Lasagna',
-  ingredients: ['egg', 'water', 'salt'],
-  ingredientsAmounts: [2, 600, 10],
-  ingredientsUnits: ['개', 'ml', 'g'],
-  content: '삶은 달걀',
-  imgSrc: '/images/lasagna.jpg'
-}, {
-  id: 6,
-  name: 'Pancake',
-  ingredients: ['egg', 'water', 'salt'],
-  ingredientsAmounts: [2, 600, 10],
-  ingredientsUnits: ['개', 'ml', 'g'],
-  content: '삶은 달걀',
-  imgSrc: '/images/pancake.jpg'
-}];
 
+const $recipeSearch = document.querySelector('.recipe_search')
 const $recipes = document.querySelector('.recipe_list');
 const $upBtn = document.querySelector('.up_btn');
+const $resetBtn = document.querySelector('.reset_btn')
+let recipes = [];
+let searchRecipe = [];
+let searchList = [];
 
-// 초기 데이터 리퀘스트
-window.onload = () => {
+// 랜더
+const render = () => {
   let html = '';
   recipes.forEach(recipe => {
     html += `
@@ -62,7 +18,97 @@ window.onload = () => {
       </li>`;
   });
   $recipes.innerHTML = html;
+};
+
+// 초기 데이터 리퀘스트 로드
+window.onload = () => {
+  recipes = [{
+    id: 1,
+    name: 'Boiled egg',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['개', 'ml', 'g'],
+    content: '삶은 달걀',
+    imgSrc: '/images/boiledegg.jpg'
+  }, {
+    id: 2,
+    name: 'Steak',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['개', 'ml', 'g'],
+    content: '삶은 달걀',
+    imgSrc: '/images/steak.jpg'
+  }, {
+    id: 3,
+    name: 'Beef',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['개', 'ml', 'g'],
+    content: '삶은 달걀',
+    imgSrc: '/images/beef.jpg'
+  }, {
+    id: 4,
+    name: 'Spaghetti',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['개', 'ml', 'g'],
+    content: '삶은 달걀',
+    imgSrc: '/images/spa.jpg'
+  }, {
+    id: 5,
+    name: 'Lasagna',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['개', 'ml', 'g'],
+    content: '삶은 달걀',
+    imgSrc: '/images/lasagna.jpg'
+  }, {
+    id: 6,
+    name: 'Pancake',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['개', 'ml', 'g'],
+    content: '삶은 달걀',
+    imgSrc: '/images/pancake.jpg'
+  }];
+  render();
+};
+
+// 검색 자동완성
+// new AutoComplete(document.querySelector('.recipeSearch'), recipes.map(recipe => recipes.name));
+
+// 레시피 검색
+const recipeSearchRender = recipeName => {
+  searchRecipe = recipes.filter(recipe => recipe.name.toLowerCase() === recipeName.toLowerCase())[0];
+  if (!searchRecipe) $recipes.textContent = '검색결과가 없습니다.';
+  $recipes.innerHTML = `<li id ="${searchRecipe.id}" class="recipe" tabindex="0"> 
+  <figure><img class ="recipe_img" src="${searchRecipe.imgSrc}" alt="레시피이미지"></figure>
+  <figcaption>${searchRecipe.name}</figcaption>
+  </li>`;
 }
+$recipeSearch.onkeyup = e => {
+  let recipeName = '';
+  if (e.keyCode !== 13) return;
+  recipeName = $recipeSearch.value;
+  console.log(recipeName);
+  $recipeSearch.value = '';
+  recipeSearchRender(recipeName);
+}
+$resetBtn.onclick = () => {
+  render();
+}
+
+
+// 레시피 호버시 이벤트
+$recipes.onmouseover = ({ target }) => {
+  if (!target.matches('.recipe_list > li > figure > img')) return;
+  target.style.opacity = '0.7';
+};
+$recipes.onmouseout = ({ target }) => {
+  if (!target.matches('.recipe_list > li > figure > img')) return;
+  target.style.opacity = '1';
+};
+
 
 // 페이지 최상단으로 이동
 $upBtn.onclick = () => {
