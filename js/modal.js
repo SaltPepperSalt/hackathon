@@ -60,7 +60,7 @@ const $nextBtn = document.querySelector('.next_btn');
 const $modalList = document.querySelector('.modal_list');
 const $modalWrapper = document.querySelector('.modal_wrapper');
 const $timer = document.querySelector('.timer');
-const $timerStart = document.
+const $timerStatus = document.querySelector('.timer_start')
 
 // init state
 $preBtn.style.display = 'none';
@@ -103,16 +103,18 @@ const sliderFunc = (function () {
 const timer = (function () {
   let time = 120;
   let stopCode = 0;
-  $timer.textContent = time;
+  $timer.textContent = `${Math.floor(time / 60) + ':' + (time % 60 < 10 ? '0' + time % 60 : time % 60)}`;
   return {
     startTimer() {
+      $timerStatus.classList.replace('timer_start', 'timer_stop');
       stopCode = setInterval(() => {
         time--;
-        $timer.textContent = time;
+        $timer.textContent = `${Math.floor(time / 60) + ':' + (time % 60 < 10 ? '0' + time % 60 : time % 60)}`;
       }, 1000);
     },
     stopTimer() {
       clearInterval(stopCode);
+      $timerStatus.classList.replace('timer_stop', 'timer_start' );
     }
   }
 })();
@@ -122,4 +124,8 @@ $preBtn.onclick = sliderFunc.prevPage;
 $resetBtn.onclick = sliderFunc.resetPage;
 $closeBtn.onclick = () => {
   $modalWrapper.style.display = 'none';
+};
+$timerStatus.onclick = e => {
+  if(e.target.matches('.timer_start')) timer.startTimer();
+  else if(e.target.matches('.timer_stop')) timer.stopTimer();
 };

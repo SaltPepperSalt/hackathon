@@ -1,7 +1,22 @@
+body {
+  margin: 0;
+}
+
+.modal_wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(70, 70, 70, 0.7);
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal_viewport {
-  width: 200px;
-  height: 200px;
-  border: 10px solid red;;
+  width: 60%;
+  height: 80%;
+  background-color: #fff;
 }
 
 .modal_list {
@@ -20,7 +35,60 @@
   border: 10px solid black;
   box-sizing: border-box;
 }
-
+.modal_wrapper [class$="_btn"] {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+}
 .pre_btn {
+  width: 80px;
+  height: 80px;
   transform: rotate(180deg);
+  left: 12%;
+}
+.pre_btn img {
+  width: 100%;
+}
+.reset_btn {
+  width: 60px;
+  height: 60px;
+  right: 16%;
+  top: calc(12% + 60px);
+}
+.reset_btn img {
+  width: 100%;
+}
+.next_btn {
+  width: 80px;
+  height: 80px;
+  right: 12%;
+}
+.next_btn img{
+  width: 100%;
+}
+.close_btn {
+  top: 10%;
+  right: 16%;
+  width: 60px;
+  height: 60px;
+}
+.close_btn img {
+  width: 100%;
+}
+
+.timer_start {
+  width: 100px;
+  height: 100px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/icon/icon_play.png");
+  background-size: contain;
+}
+.timer_stop {
+  width: 100px;
+  height: 100px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/icon/icon_pause_211791.png");
+  background-size: contain;
 }
