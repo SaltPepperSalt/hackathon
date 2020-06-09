@@ -1,6 +1,7 @@
 const $slideBox = document.querySelector('.slide_box');
 const firstImg = $slideBox.firstElementChild.cloneNode(true);
 let visualIndex = 0 ;
+
 $slideBox.appendChild(firstImg); 
 
 function slide() { 
@@ -56,7 +57,8 @@ const $msg = document.querySelector('.msg');
 // State
 let recipes = [];
 let targetRecipe = {};
-let $ingredient = '';
+let $ingredient = {};
+let $timerReset = {};
 
 //DOM
 
@@ -150,6 +152,7 @@ window.onload = () => {
     content: '파리바게트 가서 사세요',
     imgSrc: '/images/pancake.jpg'
   }];
+  recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
   render();
 };
 
@@ -283,7 +286,9 @@ const timer = (function () {
         time--;
         $timer.textContent = `${Math.floor(time / 60) + ':' + (time % 60 < 10 ? '0' + time % 60 : time % 60)}`;
         if (time === 0) {
-          $timer.textContent = 'Done!'
+          $timer.textContent = 'Done!';
+          $timerStatus.style.display = 'none';
+          $timerReset.style.display = 'inline-block';
           clearInterval(stopCode);
         }
       }, 1000);
@@ -297,7 +302,7 @@ const timer = (function () {
       const $timer = document.querySelector('.timer');
       time = recipeTime;
       $timer.textContent = `${Math.floor(time / 60) + ':' + (time % 60 < 10 ? '0' + time % 60 : time % 60)}`;
-    }
+    },
   }
 })();
 
@@ -333,6 +338,7 @@ const renderModal = recipe => {
       <div class="timer_wrapper">
         <div class="timer"></div>
         <button class="timer_start"></button>
+        <button class="timer_reset"></button>
       </div>
     </div>
   </li>
@@ -348,7 +354,14 @@ const renderModal = recipe => {
   </li>`
   $modalList.innerHTML = html;
   timer.setTimer(recipe.time);
-  $ingredient = document.querySelector('.ingredient')
+  $ingredient = document.querySelector('.ingredient');
+  $timerReset = document.querySelector('.timer_reset');
+  $timerReset.onclick = e => {
+    timer.setTimer(targetRecipe.time);
+    timer.stopTimer();
+    e.target.style.display = 'none';
+    e.target.previousElementSibling.style.display = 'inline-block'; 
+  };
 };
 
 // Ingredient change
@@ -381,3 +394,4 @@ $recipeList.onclick = e => {
   renderModal(targetRecipe);
   $modalWrapper.style.display = 'flex';
 };
+

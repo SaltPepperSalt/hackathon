@@ -266,6 +266,15 @@ border-radius: 20px;
   background-image: url("../images/icon/icon_pause_211791.png");
   background-size: contain;
 }
+.timer_reset {
+  display: none;
+  width: 80px;
+  height: 80px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/icon/icon_undo3.png");
+  background-size: contain;
+}
 
 .end {
   display: block;
