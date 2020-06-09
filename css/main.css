@@ -1,0 +1,23 @@
+p {
+    margin: 0;
+  }
+/* 레시피 ul요소 */
+.recipe_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* 레시피 li요소 */
+.recipe {
+    list-style: none;
+    background-color: blue;
+    height: 500px;
+    width: 33%;
+}   
+.recipe_img {
+    width: 100%;
+}
+.up_btn {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
