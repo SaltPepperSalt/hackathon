@@ -38,9 +38,18 @@ text-align: center;
 }
 
 /* 정렬 초기화 버튼 */
-.reset_btn {
+.search_box {
+  width: 100%;
+  text-align: right;
 }
-
+.search_box > button {
+  background-color: #fff;
+  border-width: 0ch;
+  border-bottom: 2px;
+}
+.reset_sort_btn {
+  display: none;
+}
 /* 검색창 */
 .recipe_search {
 }

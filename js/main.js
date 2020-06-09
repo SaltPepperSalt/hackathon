@@ -8,8 +8,6 @@ const $sortNameBtn = document.querySelector('.sort_name_btn');
 const $sortDateBtn = document.querySelector('.sort_date_btn');
 
 let recipes = [];
-let searchRecipe = [];
-let searchList = [];
 
 // 랜더
 const render = () => {
@@ -81,7 +79,7 @@ window.onload = () => {
 
 // 레시피 검색
 const recipeSearchRender = recipeName => {
-  searchRecipe = recipes.filter(recipe => recipe.name.toLowerCase() === recipeName.toLowerCase())[0];
+  let searchRecipe = recipes.filter(recipe => recipe.name.toLowerCase() === recipeName.toLowerCase())[0];
 
   if (!searchRecipe) $recipeSearch.placeholder = '검색결과가 없습니다.';
 
