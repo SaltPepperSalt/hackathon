@@ -75,10 +75,10 @@ $modalWrapper.style.display = 'none';
   let second = time.getSeconds();
   $time.innerHTML = `${day}일${hour}:${minute}:${second}`;
 
-  // 메세지 나오게하기
+  // Time Message
   const msgBox = hour > 17 ? 'evening': (hour < 11 ? 'morning':'afternoon');
   $msg.innerHTML = `Good ${msgBox}!`;
-  // AM , PM 나누기 
+  // AM , PM 
   const ampm = hour < 12 ? 'AM' : 'PM';  
   // 12시간제로 바꾸기
   hour %= 12;
@@ -99,9 +99,9 @@ $modalWrapper.style.display = 'none';
 
 
 // Render
-const render = () => {
+const render = _recipes => {
   let html = '';
-  recipes.forEach(recipe => {
+  _recipes.forEach(recipe => {
     html += `
       <li id ="${recipe.id}" class="recipe" tabindex="0"> 
         <figure><img class ="recipe_img" src="${recipe.imgSrc}" alt="${recipe.name} 이미지"></figure>
@@ -175,39 +175,36 @@ window.onload = () => {
     imgSrc: '/images/pancake.jpg'
   }];
   recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
-  render();
+  render(recipes);
 };
 
 
 // Recipe Search
 const recipeSearchRender = recipeName => {
-  let searchRecipe = recipes.filter(recipe => recipe.name.toLowerCase() === recipeName.toLowerCase())[0]; 
-// 정규 표현식
-  console.log(searchRecipe);
-  if (!searchRecipe) $recipeSearch.placeholder = '검색결과가 없습니다.';
-// alert 
-
-  if (searchRecipe) {$recipeList.innerHTML = `
-  <li id ="${searchRecipe.id}" class="recipe search_recipe"> 
-    <figure><img class ="recipe_img" src="${searchRecipe.imgSrc}" alt="${searchRecipe.name} 이미지"></figure>
-    <figcaption>${searchRecipe.name}</figcaption>
-  </li>
-  `;
+  const regExp = new RegExp(recipeName, 'i');
+  let searchRecipe = recipes.filter(recipe => regExp.test(recipe.name)); 
+  if (!searchRecipe) {
+    $recipeSearch.placeholder = '검색결과가 없습니다.'
+    return;
+  };
+  render(searchRecipe);
   $recipeSearch.placeholder = '레시피 검색';
   $resetSortbtn.style.display = 'block';
-  }
 };
+
+
+
+
 $recipeSearch.onkeyup = e => {
   if (e.keyCode !== 13) return;
   // 방어코드 비어있을 때
   recipeSearchRender($recipeSearch.value);
   $recipeSearch.value = '';
-  console.log('375')
 }
 
 $resetSortbtn.onclick = () => {
   $resetSortbtn.style.display = 'none';
-  render();
+  render(recipes);
 }
 
 const compare = key => {
