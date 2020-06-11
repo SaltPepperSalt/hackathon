@@ -48,7 +48,7 @@ $preBtn.style.display = 'none';
 $resetBtn.style.display = 'none';
 $modalWrapper.style.display = 'none';
 
-
+// Constant Function
 
 (function slide() { 
   if (visualIndex === SLIDER_COUNT) {
@@ -95,8 +95,7 @@ $modalWrapper.style.display = 'none';
 
 
 
-
-
+//Funciton
 
 // Render
 const render = _recipes => {
@@ -109,73 +108,6 @@ const render = _recipes => {
       </li>`;
   });
   $recipeList.innerHTML = html;
-};
-
-// onload Event
-window.onload = () => {
-  recipes = [{
-    id: 1,
-    name: 'Boiled egg',
-    ingredients: ['egg', 'water', 'salt'],
-    ingredientsAmounts: [2, 600, 10],
-    ingredientsUnits: ['ea', 'ml', 'g'],
-    time: 570,
-    cookImg: '/images/icon/icon_pot2.png',
-    content: '물에 넣고 삶아주세요',
-    imgSrc: '/images/boiledegg.jpg'
-  }, {
-    id: 2,
-    name: 'Steak',
-    ingredients: ['beef', 'oil', 'salt'],
-    ingredientsAmounts: [400, 20, 10],
-    ingredientsUnits: ['g', 'ml', 'g'],
-    time: 180,
-    cookImg: '/images/icon/icon_pot1.png',
-    content: '기름을 두르고 구워주세요',
-    imgSrc: '/images/steak.jpg'
-  }, {
-    id: 3,
-    name: 'Beef',
-    ingredients: ['beef', 'rice', 'egg', 'oil'],
-    ingredientsAmounts: [300, 200, 1, 20],
-    ingredientsUnits: ['g', 'g', 'ea', 'ml'],
-    time: 180,
-    cookImg: '/images/icon/icon_pot1.png',
-    content: '기름을 두르고 구워주세요',
-    imgSrc: '/images/beef.jpg'
-  }, {
-    id: 4,
-    name: 'Pasta',
-    ingredients: ['spaghetti', 'water', 'oil', 'tomato sauce'],
-    ingredientsAmounts: [200, 600, 10, 100],
-    ingredientsUnits: ['g', 'ml', 'g', 'ml'],
-    time: 120,
-    cookImg: '/images/icon/icon_pot1.png',
-    content: '면을 삶은 후 토마토 소스와 볶아주세요',
-    imgSrc: '/images/spa.jpg'
-  }, {
-    id: 5,
-    name: 'Lasagna',
-    ingredients: ['rice', 'water', 'salt'],
-    ingredientsAmounts: [2, 600, 10],
-    ingredientsUnits: ['ea', 'ml', 'g'],
-    time: 10,
-    cookImg: '/images/icon/icon_pot.png',
-    content: '라자냐 어케 만들더라',
-    imgSrc: '/images/lasagna.jpg'
-  }, {
-    id: 6,
-    name: 'Pancake',
-    ingredients: ['egg', 'water', 'salt'],
-    ingredientsAmounts: [2, 600, 10],
-    ingredientsUnits: ['ea', 'ml', 'g'],
-    time: 10,
-    cookImg: '/images/icon/icon_pot.png',
-    content: '돈 주고 사먹으세요',
-    imgSrc: '/images/pancake.jpg'
-  }];
-  recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
-  render(recipes);
 };
 
 
@@ -192,75 +124,11 @@ const recipeSearchRender = recipeName => {
   $resetSortbtn.style.display = 'block';
 };
 
-
-
-
-$recipeSearch.onkeyup = e => {
-  if (e.keyCode !== 13) return;
-  // 방어코드 비어있을 때
-  recipeSearchRender($recipeSearch.value);
-  $recipeSearch.value = '';
-}
-
-$resetSortbtn.onclick = () => {
-  $resetSortbtn.style.display = 'none';
-  render(recipes);
-}
-
+// Sort Compare Function
 const compare = key => {
   return (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
 };
 
-// Sort by Name
-$sortNameBtn.onclick = () => {
-  recipes = recipes.sort(compare('name'));
-  render();
-};
-
-// Sort by update
-$sortDateBtn.onclick = () => {
-  recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
-  render();
-}
-
-// Recipe hover event
-$recipeList.onmouseover = ({ target }) => {
-  if (!target.matches('.recipe_list > li > figure > img')) return;
-  target.style.opacity = '0.7';
-};
-
-$recipeList.onmouseout = ({ target }) => {
-  if (!target.matches('.recipe_list > li > figure > img')) return;
-  target.style.opacity = '1';
-};
-
-// Click Button to go top
-$upBtn.onclick = () => {
-  window.scroll({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  });
-};
-
-
-
-
-
-// Up Button display
-window.onscroll = () => {
-  if (!scrollTimer) {
-    scrollTimer = setTimeout(function() {
-      scrollTimer = null;
-      if (document.documentElement.scrollTop > 200) {
-        $upBtn.style.display = 'block';
-      }
-      if (document.documentElement.scrollTop <= 200) {
-        $upBtn.style.display = 'none';
-      }
-    }, 200);
-  }
-};
 
 
 
@@ -407,9 +275,142 @@ const servingAmount = (serving = 1) => {
 
 //EVENT HANDLER
 
+// onload Event
+window.onload = () => {
+  recipes = [{
+    id: 1,
+    name: 'Boiled egg',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['ea', 'ml', 'g'],
+    time: 570,
+    cookImg: '/images/icon/icon_pot2.png',
+    content: '물에 넣고 삶아주세요',
+    imgSrc: '/images/boiledegg.jpg'
+  }, {
+    id: 2,
+    name: 'Steak',
+    ingredients: ['beef', 'oil', 'salt'],
+    ingredientsAmounts: [400, 20, 10],
+    ingredientsUnits: ['g', 'ml', 'g'],
+    time: 180,
+    cookImg: '/images/icon/icon_pot1.png',
+    content: '기름을 두르고 구워주세요',
+    imgSrc: '/images/steak.jpg'
+  }, {
+    id: 3,
+    name: 'Beef',
+    ingredients: ['beef', 'rice', 'egg', 'oil'],
+    ingredientsAmounts: [300, 200, 1, 20],
+    ingredientsUnits: ['g', 'g', 'ea', 'ml'],
+    time: 180,
+    cookImg: '/images/icon/icon_pot1.png',
+    content: '기름을 두르고 구워주세요',
+    imgSrc: '/images/beef.jpg'
+  }, {
+    id: 4,
+    name: 'Pasta',
+    ingredients: ['spaghetti', 'water', 'oil', 'tomato sauce'],
+    ingredientsAmounts: [200, 600, 10, 100],
+    ingredientsUnits: ['g', 'ml', 'g', 'ml'],
+    time: 120,
+    cookImg: '/images/icon/icon_pot1.png',
+    content: '면을 삶은 후 토마토 소스와 볶아주세요',
+    imgSrc: '/images/spa.jpg'
+  }, {
+    id: 5,
+    name: 'Lasagna',
+    ingredients: ['rice', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['ea', 'ml', 'g'],
+    time: 10,
+    cookImg: '/images/icon/icon_pot.png',
+    content: '라자냐 어케 만들더라',
+    imgSrc: '/images/lasagna.jpg'
+  }, {
+    id: 6,
+    name: 'Pancake',
+    ingredients: ['egg', 'water', 'salt'],
+    ingredientsAmounts: [2, 600, 10],
+    ingredientsUnits: ['ea', 'ml', 'g'],
+    time: 10,
+    cookImg: '/images/icon/icon_pot.png',
+    content: '돈 주고 사먹으세요',
+    imgSrc: '/images/pancake.jpg'
+  }];
+  recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
+  render(recipes);
+};
+
+
+$recipeSearch.onkeyup = e => {
+  if (e.keyCode !== 13) return;
+  $recipeSearch = $recipeSearch.value.trim();
+  if (!$recipeSearch) return
+  recipeSearchRender($recipeSearch.value);
+  $recipeSearch.value = '';
+}
+
+$resetSortbtn.onclick = () => {
+  $resetSortbtn.style.display = 'none';
+  render(recipes);
+}
+
+// Sort by Name
+$sortNameBtn.onclick = () => {
+  recipes = recipes.sort(compare('name'));
+  render(recipes);
+};
+
+// Sort by update
+$sortDateBtn.onclick = () => {
+  recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
+  render(recipes);
+}
+
+// Recipe hover event
+$recipeList.onmouseover = ({ target }) => {
+  if (!target.matches('.recipe_list > li > figure > img')) return;
+  target.style.opacity = '0.7';
+};
+
+$recipeList.onmouseout = ({ target }) => {
+  if (!target.matches('.recipe_list > li > figure > img')) return;
+  target.style.opacity = '1';
+};
+
+// Click Button to go top
+$upBtn.onclick = () => {
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  });
+};
+
+
+
+// Up Button display
+window.onscroll = () => {
+  if (!scrollTimer) {
+    scrollTimer = setTimeout(function() {
+      scrollTimer = null;
+      if (document.documentElement.scrollTop > 200) {
+        $upBtn.style.display = 'block';
+      }
+      if (document.documentElement.scrollTop <= 200) {
+        $upBtn.style.display = 'none';
+      }
+    }, 200);
+  }
+};
+
 $nextBtn.onclick = sliderFunc.nextPage;
+
 $preBtn.onclick = sliderFunc.prevPage;
+
 $resetBtn.onclick = sliderFunc.resetPage;
+
 $closeBtn.onclick = () => {
   $modalWrapper.style.display = 'none';
   sliderFunc.resetPage();
