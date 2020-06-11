@@ -1,36 +1,78 @@
+// State
+let recipes = [];
+let targetRecipe = {};
+let $ingredient = {};
+let $timerReset = {};
+let visualIndex = 0;
+let scrollTimer = 0;
+
+//DOM
+
+//slider DOM
 const $slideBox = document.querySelector('.slide_box');
 const firstImg = $slideBox.firstElementChild.cloneNode(true);
-let visualIndex = 0 ;
-
 $slideBox.appendChild(firstImg); 
 
-function slide() { 
-  if (visualIndex === 4) {
+//search DOM
+const $searchBox = document.querySelector('.search_box')
+const $sortNameBtn = $searchBox.querySelector('.sort_name_btn');
+const $sortDateBtn = $searchBox.querySelector('.sort_date_btn');
+const $recipeSearch = $searchBox.querySelector('.recipe_search');
+const $resetSortbtn = document.querySelector('.reset_sort_btn');
+
+//Header DOM
+const $time = document.querySelector('.time');
+const $msg = document.querySelector('.msg');
+
+//main DOM
+const $recipeList = document.querySelector('.recipe_list');
+const $upBtn = document.querySelector('.up_btn');
+
+//modal DOM
+const $modalWrapper = document.querySelector('.modal_wrapper');
+const $modalList = $modalWrapper.querySelector('.modal_list');
+const $resetBtn = $modalWrapper.querySelector('.reset_btn');
+const $preBtn = $modalWrapper.querySelector('.pre_btn');
+const $nextBtn = $modalWrapper.querySelector('.next_btn');
+const $closeBtn = $modalWrapper.querySelector('.close_btn');
+
+//constant
+const SLIDER_COUNT = 4;
+const SLIDER_TRANSITION = 2;
+const SLIDER_DURATION = 3000;
+const MODALSLIDER_COUNT = 3;
+const MODALSLIDER_DURATION = 0.3;
+
+// init state
+$preBtn.style.display = 'none';
+$resetBtn.style.display = 'none';
+$modalWrapper.style.display = 'none';
+
+
+
+(function slide() { 
+  if (visualIndex === SLIDER_COUNT) {
+    $slideBox.style.transform = `translateX(-${ 100 / (SLIDER_COUNT + 1) * (visualIndex+1)}%)`;
+    $slideBox.style.transition = `${SLIDER_TRANSITION}s`;
+    visualIndex++;
+    setTimeout(slide, SLIDER_DURATION);
+  } else {
     visualIndex = 0;
     $slideBox.style.transform = `translateX(-0%)`;
     $slideBox.style.transition = '0s';
     setTimeout(slide, 0);
-  } else {
-    $slideBox.style.transform = `translateX(-${20 * (visualIndex+1)}%)`;
-    $slideBox.style.transition = '2s';
-    visualIndex++;
-    setTimeout(slide, 3000);
   }
 }
-slide();
+)();
 
-const $time = document.querySelector('.time');
-const $msg = document.querySelector('.msg');
 
 (function timeBox() {
-
-
-  const clock = new Date();
-  let month = clock.getMonth();
-  let day = clock.getDay();
-  let hour = clock.getHours();
-  let minute = clock.getMinutes();
-  let second = clock.getSeconds();
+  const time = new Date();
+  let month = time.getMonth();
+  let day = time.getDay();
+  let hour = time.getHours();
+  let minute = time.getMinutes();
+  let second = time.getSeconds();
   $time.innerHTML = `${day}일${hour}:${minute}:${second}`;
 
   // 메세지 나오게하기
@@ -40,7 +82,7 @@ const $msg = document.querySelector('.msg');
   const ampm = hour < 12 ? 'AM' : 'PM';  
   // 12시간제로 바꾸기
   hour %= 12;
-  // 0 붙히기
+  // 10미만 0 붙히기
   month = month < 10 ? '0' + month : month;
   day = day < 10 ? '0' + day : day;
   hour = hour < 10 ? '0' + hour : hour;
@@ -54,30 +96,9 @@ const $msg = document.querySelector('.msg');
 
 
 
-// State
-let recipes = [];
-let targetRecipe = {};
-let $ingredient = {};
-let $timerReset = {};
 
-//DOM
 
-const $recipeSearch = document.querySelector('.recipe_search');
-const $upBtn = document.querySelector('.up_btn');
-// const $resetSortbtn = document.querySelector('.reset_sort_btn')
-const $searchBox = document.querySelector('.search_box')
-const $sortNameBtn = document.querySelector('.sort_name_btn');
-const $sortDateBtn = document.querySelector('.sort_date_btn');
-const $recipeList = document.querySelector('.recipe_list');
-const $resetBtn = document.querySelector('.reset_btn');
-const $preBtn = document.querySelector('.pre_btn');
-const $closeBtn = document.querySelector('.close_btn');
-const $nextBtn = document.querySelector('.next_btn');
-const $modalList = document.querySelector('.modal_list');
-const $modalWrapper = document.querySelector('.modal_wrapper');
-const $resetSortbtn = document.querySelector('.reset_sort_btn');
-
-// 랜더
+// Render
 const render = () => {
   let html = '';
   recipes.forEach(recipe => {
@@ -90,7 +111,7 @@ const render = () => {
   $recipeList.innerHTML = html;
 };
 
-// 초기 데이터 리퀘스트 로드
+// onload Event
 window.onload = () => {
   recipes = [{
     id: 1,
@@ -158,7 +179,7 @@ window.onload = () => {
 };
 
 
-// 레시피 검색
+// Recipe Search
 const recipeSearchRender = recipeName => {
   let searchRecipe = recipes.filter(recipe => recipe.name.toLowerCase() === recipeName.toLowerCase())[0]; 
 // 정규 표현식
@@ -193,19 +214,19 @@ const compare = key => {
   return (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
 };
 
-// 이름순 레시피 정렬
+// Sort by Name
 $sortNameBtn.onclick = () => {
   recipes = recipes.sort(compare('name'));
   render();
 };
 
-// 업데이트순 레시피 정렬
+// Sort by update
 $sortDateBtn.onclick = () => {
   recipes = recipes.sort((recipe1, recipe2) => recipe2.id - recipe1.id);
   render();
 }
 
-// 레시피 호버시 이벤트
+// Recipe hover event
 $recipeList.onmouseover = ({ target }) => {
   if (!target.matches('.recipe_list > li > figure > img')) return;
   target.style.opacity = '0.7';
@@ -216,7 +237,7 @@ $recipeList.onmouseout = ({ target }) => {
   target.style.opacity = '1';
 };
 
-// 페이지 최상단으로 이동 버튼
+// Click Button to go top
 $upBtn.onclick = () => {
   window.scroll({
     top: 0,
@@ -225,12 +246,22 @@ $upBtn.onclick = () => {
   });
 };
 
+
+
+
+
+// Up Button display
 window.onscroll = () => {
-  if (document.documentElement.scrollTop > 200) {
-    $upBtn.style.display = 'block';
-  }
-  if (document.documentElement.scrollTop <= 200) {
-    $upBtn.style.display = 'none';
+  if (!scrollTimer) {
+    scrollTimer = setTimeout(function() {
+      scrollTimer = null;
+      if (document.documentElement.scrollTop > 200) {
+        $upBtn.style.display = 'block';
+      }
+      if (document.documentElement.scrollTop <= 200) {
+        $upBtn.style.display = 'none';
+      }
+    }, 200);
   }
 };
 
@@ -238,23 +269,20 @@ window.onscroll = () => {
 
 
 
-// init state
-$preBtn.style.display = 'none';
-$resetBtn.style.display = 'none';
-$modalWrapper.style.display = 'none';
 
 
-// Slider Function
+
+// Modal Slider Function
 
 const sliderFunc = (function () {
   let curPage = 0;
   return {
     nextPage() {
-      if (curPage === 2) return;
-      $modalList.style.transform = `translate3d(-${100 / 3 * (curPage + 1)}% , 0px, 0px)`;
-      $modalList.style.transition = '0.3s';
+      if (curPage === MODALSLIDE_COUNT - 1) return;
+      $modalList.style.transform = `translate3d(-${100 / MODALSLIDE_COUNT * (curPage + 1)}% , 0px, 0px)`;
+      $modalList.style.transition = `${MODALSLIDER_DURATION}s`;
       curPage++;
-      if (curPage === 2) { 
+      if (curPage === MODALSLIDE_COUNT - 1) { 
         $nextBtn.style.display = 'none';
         $resetBtn.style.display = 'inline-block';
       }
@@ -263,8 +291,8 @@ const sliderFunc = (function () {
     prevPage() {
       $resetBtn.style.display = 'none';
       if (curPage === 0) return;
-      $modalList.style.transform = `translate3d(-${100 / 3 * (curPage -1)}% , 0px, 0px)`;
-      $modalList.style.transition = '0.3s';
+      $modalList.style.transform = `translate3d(-${100 / MODALSLIDE_COUNT * (curPage -1)}% , 0px, 0px)`;
+      $modalList.style.transition = `${MODALSLIDER_DURATION}s`;
       curPage--;
       if (curPage === 0) $preBtn.style.display = 'none';
       $nextBtn.style.display = 'inline-block';
@@ -279,7 +307,8 @@ const sliderFunc = (function () {
   }
 }());
 
-// Timer Function
+// Modal Timer Function
+
 const timer = (function () {
   let time = 0;
   let stopCode = 0;
@@ -378,6 +407,8 @@ const servingAmount = (serving = 1) => {
   return html;
 }; 
 
+
+//EVENT HANDLER
 
 $nextBtn.onclick = sliderFunc.nextPage;
 $preBtn.onclick = sliderFunc.prevPage;
